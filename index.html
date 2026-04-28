@@ -1,142 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>WRC Corner Visualisation – Proof of Concept</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WRC Corner Performance Visualisation</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header>
-    <h1>WRC Corner Visualisation – Proof of Concept</h1>
-    <p>Top-down view of a single corner showing two driving lines.</p>
+    <h1>WRC Corner Performance Visualisation</h1>
+    <p>Proof-of-concept rally stage and corner comparison</p>
   </header>
 
   <main>
+    <!-- ── Playback controls ─────────────────────────────────────────────── -->
     <section class="controls">
       <div class="control-group">
-        <label for="driver1Name">Driver 1</label>
-        <input id="driver1Name" type="text" value="Driver A (1990 car)" />
+        <label for="stageSelect">Stage</label>
+        <select id="stageSelect"></select>
       </div>
 
       <div class="control-group">
-        <label for="driver2Name">Driver 2</label>
-        <input id="driver2Name" type="text" value="Driver B (Rally1 hybrid)" />
+        <label for="driver1Select">Driver 1</label>
+        <select id="driver1Select"></select>
       </div>
 
       <div class="control-group">
-        <label for="cornerLength">Corner length (m)</label>
-        <input id="cornerLength" type="number" value="150" />
-      </div>/
-
-      <div class="control-group">
-        <label for="driver1Time">Driver 1 time through corner (s)</label>
-        <input id="driver1Time" type="number" step="0.1" value="3.2" />
+        <label for="driver2Select">Driver 2</label>
+        <select id="driver2Select"></select>
       </div>
 
       <div class="control-group">
-        <label for="driver2Time">Driver 2 time through corner (s)</label>
-        <input id="driver2Time" type="number" step="0.1" value="3.6" />
+        <label for="speedMultiplier">Playback speed</label>
+        <select id="speedMultiplier">
+          <option value="0.5">0.5×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
       </div>
 
-      <div class="buttons">
-        <button id="playBtn">Play</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="resetBtn">Reset</button>
+      <div class="button-group">
+        <button id="playBtn"  type="button">Play</button>
+        <button id="pauseBtn" type="button">Pause</button>
+        <button id="resetBtn" type="button">Reset</button>
       </div>
     </section>
 
-    <section class="status">
-      <div>Time: <span id="timeDisplay">0.00</span> s</div>
-      <div>Gap (Driver 2 − Driver 1): <span id="gapDisplay">0.00</span> s</div>
-      <div>Distance along corner: <span id="distanceDisplay">0</span> m</div>
+    <!-- ── Live metrics strip ────────────────────────────────────────────── -->
+    <section class="status-panel">
+      <div><strong>Stage:</strong>         <span id="stageName">Loading…</span></div>
+      <div><strong>Corner length:</strong> <span id="cornerLengthText">-</span></div>
+      <div><strong>Elapsed time:</strong>  <span id="elapsedTimeText">0.00 s</span></div>
+      <div><strong>Gap:</strong>           <span id="gapText">0.00 s</span></div>
+      <div><strong>Distance:</strong>      <span id="distanceText">0.0 m</span></div>
     </section>
 
-    <section class="viz">
-      <svg id="cornerSvg" viewBox="0 0 800 400">
-        <!-- Road / corner (simple S-shaped section) -->
-        <defs>
-          <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#444" />
-            <stop offset="100%" stop-color="#555" />
-          </linearGradient>
-        </defs>
+    <!-- ── Two-column visualisation layout ───────────────────────────────── -->
+    <section class="visualisation-layout">
 
-        <!-- Road shape (fat grey path) -->
-        <path
-          id="roadPath"
-          d="M 50 350
-             C 250 350 300 150 450 150
-             C 650 150 700 250 750 250"
-          stroke="url(#roadGradient)"
-          stroke-width="80"
-          fill="none"
-          stroke-linecap="round"
-        />
+      <!-- Left: main corner animation SVG -->
+      <section class="main-visual">
+        <h2>Corner view</h2>
+        <svg id="cornerSvg" viewBox="0 0 900 520" aria-label="Corner view"></svg>
+      </section>
 
-        <!-- Inside kerb (just for vibe) -->
-        <path
-          d="M 50 350
-             C 250 350 300 150 450 150
-             C 650 150 700 250 750 250"
-          stroke="#888"
-          stroke-width="6"
-          fill="none"
-          stroke-linecap="round"
-          stroke-dasharray="12 8"
-        />
+      <!-- Right: stage overview, reference image, legend, data source -->
+      <aside class="overview-panel">
+        <h2>Stage overview</h2>
 
-        <!-- Driving lines -->
-        <path
-          id="driver1Path"
-          d="M 70 340
-             C 260 340 310 160 455 155
-             C 655 155 705 245 735 245"
-          stroke="#00e5ff"
-          stroke-width="4"
-          fill="none"
-        />
+        <!-- Mini SVG showing the full stage with the selected mini-sector highlighted -->
+        <svg id="stageSvg" viewBox="0 0 300 220" aria-label="Stage overview"></svg>
 
-        <path
-          id="driver2Path"
-          d="M 40 360
-             C 230 360 290 165 440 145
-             C 640 145 710 260 760 260"
-          stroke="#ffd54f"
-          stroke-width="4"
-          fill="none"
-        />
+        <!-- Photographic route reference with a positioned marker dot -->
+        <div class="track-image-panel">
+          <h3>Turini route reference</h3>
+          <div class="track-image-wrapper">
+            <img
+              src="images/turini_overview.png"
+              alt="Overview image of the Turini route showing the full stage layout"
+              id="trackReferenceImage"
+            />
+            <!-- Marker dot and label are positioned via JS using markerXPercent / markerYPercent -->
+            <div class="track-marker" id="trackMarker"></div>
+            <div class="track-label">Selected mini-sector</div>
+          </div>
+        </div>
 
-        <!-- Car markers -->
-        <g id="driver1Car">
-          <rect x="-8" y="-4" width="16" height="8" rx="2" ry="2" fill="#00e5ff" />
-        </g>
+        <!-- Colour legend for the two selected drivers and road markings -->
+        <div class="legend">
+          <div class="legend-item">
+            <span class="legend-swatch driver1"></span>
+            <span id="legendDriver1">Driver 1</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch driver2"></span>
+            <span id="legendDriver2">Driver 2</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch centre-line"></span>
+            <span>Centre line</span>
+          </div>
+        </div>
 
-        <g id="driver2Car">
-          <rect x="-8" y="-4" width="16" height="8" rx="2" ry="2" fill="#ffd54f" />
-        </g>
-      </svg>
-    </section>
+        <!-- Data provenance note populated by script.js from the JSON source field -->
+        <div class="source-box">
+          <strong>Data source:</strong>
+          <div id="sourceText">-</div>
+        </div>
+      </aside><!-- end .overview-panel -->
 
-    <section class="legend">
-      <div class="legend-item">
-        <span class="legend-color" style="background:#00e5ff;"></span>
-        <span id="legendDriver1Text">Driver A (1990 car)</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color" style="background:#ffd54f;"></span>
-        <span id="legendDriver2Text">Driver B (Rally1 hybrid)</span>
-      </div>
-    </section>
+    </section><!-- end .visualisation-layout -->
   </main>
 
   <footer>
     <p>
-      This is a proof-of-concept visualisation using abstracted corner geometry
-      and derived timing data for demonstration purposes.
+      Stage geometry is represented in simplified form for proof-of-concept analysis.
     </p>
   </footer>
 
   <script src="script.js"></script>
 </body>
-</html>
 
+</html>

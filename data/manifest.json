@@ -1,0 +1,9 @@
+{
+  "comparisons": [
+    {
+      "label": "Monte Carlo Turini mini-sector: 1990 vs 2023",
+      "historicFile": "monte1990_turini.json",
+      "modernFile": "monte2023_turini.json"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "stageName": "Monte Carlo - Turini mini-sector (2023 reference)",
+  "source": "2023 Monte Carlo stage data based on publicly available rally results. Mini-sector time derived proportionally from the same 2.27 km Turini reference section as the 1990 data, adjusted to reflect the ~15% pace advantage of a modern Rally1 hybrid car over a 1990 Group A car.",
+  "stageLengthKm": 2.27,
+  "trackReference": {
+    "markerXPercent": 58,
+    "markerYPercent": 40
+  },
+  "stage": {
+    "points": [
+      { "x": 20,  "y": 170 },
+      { "x": 45,  "y": 165 },
+      { "x": 70,  "y": 160 },
+      { "x": 95,  "y": 150 },
+      { "x": 120, "y": 132 },
+      { "x": 145, "y": 110 },
+      { "x": 170, "y": 88  },
+      { "x": 195, "y": 74  },
+      { "x": 220, "y": 70  },
+      { "x": 245, "y": 76  },
+      { "x": 270, "y": 92  },
+      { "x": 295, "y": 114 },
+      { "x": 320, "y": 136 },
+      { "x": 345, "y": 152 },
+      { "x": 370, "y": 160 },
+      { "x": 395, "y": 156 },
+      { "x": 420, "y": 145 },
+      { "x": 445, "y": 130 },
+      { "x": 470, "y": 118 },
+      { "x": 495, "y": 112 }
+    ]
+  },
+  "corner": {
+    "stagePointStartIndex": 4,
+    "stagePointEndIndex": 14,
+    "lengthMeters": 500
+  },
+  "drivers": [
+    {
+      "id": "ogier2023",
+      "name": "Sebastien Ogier",
+      "car": "Toyota GR Yaris Rally1",
+      "era": "2023",
+      "realStageTimeSeconds": 76.5,
+      "cornerTimeSeconds": 16.85,
+      "lineStyle": "late_apex"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "stageName": "Monte Carlo - Turini mini-sector (1990 reference)",
+  "source": "1990 Monte Carlo stage data based on publicly available historical results.",
+  "stageLengthKm": 2.27,
+  "trackReference": {
+  "markerXPercent": 58,
+  "markerYPercent": 40
+},
+  "stage": {
+    "points": [
+      { "x": 20, "y": 170 },
+      { "x": 45, "y": 165 },
+      { "x": 70, "y": 160 },
+      { "x": 95, "y": 150 },
+      { "x": 120, "y": 132 },
+      { "x": 145, "y": 110 },
+      { "x": 170, "y": 88 },
+      { "x": 195, "y": 74 },
+      { "x": 220, "y": 70 },
+      { "x": 245, "y": 76 },
+      { "x": 270, "y": 92 },
+      { "x": 295, "y": 114 },
+      { "x": 320, "y": 136 },
+      { "x": 345, "y": 152 },
+      { "x": 370, "y": 160 },
+      { "x": 395, "y": 156 },
+      { "x": 420, "y": 145 },
+      { "x": 445, "y": 130 },
+      { "x": 470, "y": 118 },
+      { "x": 495, "y": 112 }
+    ]
+  },
+  "corner": {
+    "stagePointStartIndex": 4,
+    "stagePointEndIndex": 14,
+    "lengthMeters": 500
+  },
+  "drivers": [
+    {
+      "id": "sainz1990",
+      "name": "Carlos Sainz",
+      "car": "Toyota Celica GT-Four",
+      "era": "1990",
+      "realStageTimeSeconds": 90.0,
+      "cornerTimeSeconds": 19.82,
+      "lineStyle": "wide_entry"
+    }
+  ]
+}
