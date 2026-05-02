@@ -1,5 +1,4 @@
 /**
- * script.js — WRC Corner Performance Visualisation
  * ─────────────────────────────────────────────────
  * Entry point for the proof-of-concept rally animation tool.
  * Handles data loading, SVG rendering, and animation logic
