@@ -2,7 +2,7 @@
 
 A client-side web application that visualises World Rally Championship (WRC) driver performance at a **corner level**, allowing users to compare how two drivers from different eras move through a specific rally stage section in real time.
 
-Built as a BSc Software Engineering dissertation project at the University of Portsmouth — awarded **78% (First Class)**.
+Built as a BSc Software Engineering dissertation project at the University of Portsmouth - awarded **78% (First Class)**.
 
 ---
 
@@ -10,7 +10,7 @@ Built as a BSc Software Engineering dissertation project at the University of Po
 
 Most publicly available WRC data is presented as static stage time tables. These tell you *who was faster*, but not *where* or *how* the time difference developed.
 
-This tool addresses that gap. Rather than showing final results, it animates two drivers simultaneously through a selected corner or mini-sector, letting you watch the time gap open and close dynamically — the same way a pit wall analyst would think about a stage.
+This tool addresses that gap. Rather than showing final results, it animates two drivers simultaneously through a selected corner or mini-sector, letting you watch the time gap open and close dynamically - the same way a pit wall analyst would think about a stage.
 
 Key things you can observe:
 - Which driver pulls ahead through the corner and by how much
@@ -22,14 +22,14 @@ Key things you can observe:
 ## Features
 
 - **Animated top-down SVG visualisation** of a rally stage section, with two drivers moving simultaneously along the path
-- **Real-time time delta** — the gap between the two drivers updates on every animation frame
+- **Real-time time delta** - the gap between the two drivers updates on every animation frame
 - **Per-driver elapsed time** counter, showing how far through their section time each driver is
 - **Play, Pause, and Reset controls** for full playback control
-- **Playback speed selector** — slow the animation down to study the gap more closely
-- **Stage overview panel** — shows the full stage with the selected corner highlighted for spatial context
-- **Driver/era selection** — switch between predefined driver and dataset combinations
-- **Responsive layout** — works from 768px width upwards
-- **WCAG 2.1 AA accessibility** — colour contrast ratios verified for all driver labels and UI elements
+- **Playback speed selector** - slow the animation down to study the gap more closely
+- **Stage overview panel** - shows the full stage with the selected corner highlighted for spatial context
+- **Driver/era selection** - switch between predefined driver and dataset combinations
+- **Responsive layout** - works from 768px width upwards
+- **WCAG 2.1 AA accessibility** - colour contrast ratios verified for all driver labels and UI elements
 
 ---
 
@@ -37,23 +37,23 @@ Key things you can observe:
 
 ### Architecture
 
-The app is entirely **client-side** — no backend, no server required beyond a basic development server to serve files. Everything runs in the browser.
+The app is entirely **client-side** - no backend, no server required beyond a basic development server to serve files. Everything runs in the browser.
 
 There are three layers:
 
 | Layer | Responsibility |
 |---|---|
 | **Presentation** | HTML structure, CSS styling, SVG canvas |
-| **Application Logic** | JavaScript — data loading, animation, controls |
-| **Data** | JSON files — stage geometry + driver timing |
+| **Application Logic** | JavaScript - data loading, animation, controls |
+| **Data** | JSON files - stage geometry + driver timing |
 
 ### Data
 
-All stage and driver data is stored in **external JSON files** and loaded at runtime via the **Fetch API**. This means new stages or drivers can be added by dropping in a new JSON file — no changes to the application code needed.
+All stage and driver data is stored in **external JSON files** and loaded at runtime via the **Fetch API**. This means new stages or drivers can be added by dropping in a new JSON file - no changes to the application code needed.
 
 Two JSON files are used per comparison:
 
-**Stage geometry file** — defines the shape of the stage section as coordinate points:
+**Stage geometry file** - defines the shape of the stage section as coordinate points:
 ```json
 {
   "stageName": "Monte Carlo - Turini mini-sector (1990 reference)",
@@ -73,7 +73,7 @@ Two JSON files are used per comparison:
 }
 ```
 
-**Driver timing file** — defines each driver's section time and visual properties:
+**Driver timing file** - defines each driver's section time and visual properties:
 ```json
 {
   "drivers": [
@@ -102,7 +102,7 @@ On each frame:
 2. Each driver's **progress** (0.0 → 1.0) is calculated by dividing elapsed time by their `cornerTimeSeconds`
 3. Their position is **interpolated** along the SVG path based on that progress value
 4. The **time delta** is recalculated as the difference between each driver's elapsed proportion of their section time
-5. The SVG markers and UI counters are updated in place — no full redraw needed
+5. The SVG markers and UI counters are updated in place - no full redraw needed
 
 ```javascript
 const progress1 = Math.min(elapsed / driver1.cornerTimeSeconds, 1);
@@ -112,7 +112,7 @@ positionCar(cornerPath1, cornerLengthPx1, car1, progress1);
 positionCar(cornerPath2, cornerLengthPx2, car2, progress2);
 ```
 
-This approach means the faster driver naturally pulls ahead — their `cornerTimeSeconds` is lower, so they reach `progress = 1.0` first.
+This approach means the faster driver naturally pulls ahead - their `cornerTimeSeconds` is lower, so they reach `progress = 1.0` first.
 
 ### Visualisation
 
@@ -157,7 +157,7 @@ python -m http.server 8000
 http://localhost:8000
 ```
 
-No build step, no dependencies to install — it's plain HTML, CSS, and JavaScript.
+No build step, no dependencies to install - it's plain HTML, CSS, and JavaScript.
 
 ---
 
@@ -190,7 +190,7 @@ wrc-corner-visualisation/
 
 ## Background & Motivation
 
-WRC performance data is publicly available but almost always presented in classification tables and split time lists. These formats are useful for final results but give very little insight into *how* time differences develop — particularly at the level of individual corners or technical sections, which is often where stage results are actually decided.
+WRC performance data is publicly available but almost always presented in classification tables and split time lists. These formats are useful for final results but give very little insight into *how* time differences develop - particularly at the level of individual corners or technical sections, which is often where stage results are actually decided.
 
 Tools like AWS F1 Insights have demonstrated the value of interactive, section-level performance visualisation in Formula 1. No equivalent exists for rallying using public data.
 
@@ -211,18 +211,18 @@ These are all documented honestly in the dissertation and are appropriate for a 
 
 ## Built With
 
-- **JavaScript** (vanilla, no frameworks) — application logic and animation
-- **HTML5** — page structure
-- **CSS3** — styling and responsive layout
-- **SVG** — stage and driver visualisation
-- **Fetch API** — runtime data loading
-- **JSON** — data schema for stage geometry and timing
+- **JavaScript** (vanilla, no frameworks) - application logic and animation
+- **HTML5** - page structure
+- **CSS3** - styling and responsive layout
+- **SVG** - stage and driver visualisation
+- **Fetch API** - runtime data loading
+- **JSON** - data schema for stage geometry and timing
 
 ---
 
 ## Author
 
 **Jake Hele**
-BSc (Hons) Software Engineering — University of Portsmouth, 2026
+BSc (Hons) Software Engineering - University of Portsmouth, 2026
 
 [LinkedIn](https://www.linkedin.com/in/jake-hele-4486aa255/) · [GitHub](https://github.com/Jaker000)
