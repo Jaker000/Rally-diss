@@ -1,0 +1,43 @@
+{
+  "stageName": "Rally Sweden - Harwood sector (1995 reference)",
+  "source": "Rally Sweden Harwood stage sector timing (1995 and 2022) derived proportionally from publicly available WRC results. The 2022 pace reflects the advantage of a modern Rally1 car on snow. Stage geometry is an abstracted representation for proof-of-concept analysis.",
+  "stageLengthKm": 18.4,
+  "trackReference": {
+    "markerXPercent": 50,
+    "markerYPercent": 50
+  },
+  "stage": {
+    "points": [
+      { "x": 20,  "y": 155 },
+      { "x": 60,  "y": 140 },
+      { "x": 100, "y": 120 },
+      { "x": 138, "y": 96  },
+      { "x": 170, "y": 72  },
+      { "x": 200, "y": 52  },
+      { "x": 230, "y": 42  },
+      { "x": 260, "y": 40  },
+      { "x": 290, "y": 46  },
+      { "x": 318, "y": 60  },
+      { "x": 344, "y": 78  },
+      { "x": 378, "y": 92  },
+      { "x": 416, "y": 101 },
+      { "x": 462, "y": 106 }
+    ]
+  },
+  "corner": {
+    "stagePointStartIndex": 3,
+    "stagePointEndIndex": 10,
+    "lengthMeters": 380
+  },
+  "drivers": [
+    {
+      "id": "sainz1995sw",
+      "name": "Carlos Sainz",
+      "car": "Subaru Legacy RS Turbo",
+      "era": "1995",
+      "realStageTimeSeconds": 625.0,
+      "cornerTimeSeconds": 9.8,
+      "lineStyle": "wide_entry"
+    }
+  ]
+}

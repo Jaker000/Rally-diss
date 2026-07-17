@@ -3,7 +3,17 @@
     {
       "label": "Monte Carlo Turini mini-sector: 1990 vs 2023",
       "historicFile": "monte1990_turini.json",
-      "modernFile": "monte2023_turini.json"
+      "modernFile":   "monte2023_turini.json"
+    },
+    {
+      "label": "Rally Sweden Harwood sector: 1995 vs 2022",
+      "historicFile": "sweden1995_harwood.json",
+      "modernFile":   "sweden2022_harwood.json"
+    },
+    {
+      "label": "Rally Portugal Fafe sector: 1999 vs 2022",
+      "historicFile": "portugal1999_fafe.json",
+      "modernFile":   "portugal2022_fafe.json"
     }
   ]
 }

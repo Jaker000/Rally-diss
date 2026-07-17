@@ -1,7 +1,10 @@
 {
   "stageName": "Monte Carlo - Turini mini-sector (1990 reference)",
-  "source": "1990 Monte Carlo stage data based on publicly available historical results.",
+  "source": "Monte Carlo Turini mini-sector timing (1990 and 2023) derived proportionally from publicly available WRC results. The 2023 pace reflects the ~15% advantage of a modern Rally1 hybrid car over a 1990 Group A car. Stage geometry is an abstracted representation for proof-of-concept analysis.",
   "stageLengthKm": 2.27,
+  "stageImage": "images/turini_overview.png",
+  "stageImageAlt": "Overview image of the Turini route showing the full stage layout",
+  "stageImageTitle": "Turini route reference",
   "trackReference": {
   "markerXPercent": 58,
   "markerYPercent": 40

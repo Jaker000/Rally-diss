@@ -47,6 +47,13 @@
         <button id="pauseBtn" type="button">Pause</button>
         <button id="resetBtn" type="button">Reset</button>
       </div>
+
+      <div class="keyboard-hint">Space: play / pause &nbsp;·&nbsp; R: reset</div>
+
+      <div class="scrubber-row">
+        <label for="scrubber">Section position</label>
+        <input type="range" id="scrubber" min="0" max="100" step="0.1" value="0" />
+      </div>
     </section>
 
     <!-- ── Live metrics strip ────────────────────────────────────────────── -->
@@ -61,10 +68,15 @@
     <!-- ── Two-column visualisation layout ───────────────────────────────── -->
     <section class="visualisation-layout">
 
-      <!-- Left: main corner animation SVG -->
+      <!-- Left: main corner animation SVG + gap chart -->
       <section class="main-visual">
         <h2>Corner view</h2>
         <svg id="cornerSvg" viewBox="0 0 900 520" aria-label="Corner view"></svg>
+
+        <div class="gap-chart-panel">
+          <h3>Time gap across section</h3>
+          <svg id="gapChartSvg" viewBox="0 0 880 70" aria-label="Time gap chart"></svg>
+        </div>
       </section>
 
       <!-- Right: stage overview, reference image, legend, data source -->
@@ -76,7 +88,7 @@
 
         <!-- Photographic route reference with a positioned marker dot -->
         <div class="track-image-panel">
-          <h3>Turini route reference</h3>
+          <h3 id="trackImageTitle">Turini route reference</h3>
           <div class="track-image-wrapper">
             <img
               src="images/turini_overview.png"

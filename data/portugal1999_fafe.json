@@ -1,0 +1,42 @@
+{
+  "stageName": "Rally Portugal - Fafe sector (1999 reference)",
+  "source": "Rally Portugal Fafe-Lameirinha sector timing (1999 and 2022) derived proportionally from publicly available WRC results. Stage geometry is an abstracted representation of the technical chicane section for proof-of-concept analysis.",
+  "stageLengthKm": 12.9,
+  "trackReference": {
+    "markerXPercent": 50,
+    "markerYPercent": 50
+  },
+  "stage": {
+    "points": [
+      { "x": 20,  "y": 125 },
+      { "x": 52,  "y": 114 },
+      { "x": 85,  "y": 97  },
+      { "x": 115, "y": 76  },
+      { "x": 140, "y": 58  },
+      { "x": 162, "y": 52  },
+      { "x": 184, "y": 58  },
+      { "x": 206, "y": 74  },
+      { "x": 232, "y": 94  },
+      { "x": 262, "y": 108 },
+      { "x": 298, "y": 118 },
+      { "x": 338, "y": 122 },
+      { "x": 382, "y": 120 }
+    ]
+  },
+  "corner": {
+    "stagePointStartIndex": 3,
+    "stagePointEndIndex": 8,
+    "lengthMeters": 320
+  },
+  "drivers": [
+    {
+      "id": "burns1999pt",
+      "name": "Richard Burns",
+      "car": "Subaru Impreza WRC99",
+      "era": "1999",
+      "realStageTimeSeconds": 385.0,
+      "cornerTimeSeconds": 8.9,
+      "lineStyle": "aggressive_entry"
+    }
+  ]
+}
